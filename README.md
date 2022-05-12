@@ -7,6 +7,8 @@ current setup got broken. The details are:
 `cimg/node@sha256:c8ea4df07599f2c676c81f6dfecb22237da28428997589b28e8afa0afee8e96f`
 - the current "bad" image is `cimg/node@sha256:c74edbc4f04bab52e47ca8a77e5a44cfb6241a13a87687262e554a345ac5359d`
 
+Check the error on CircleCI: [![CircleCI](https://circleci.com/gh/korya/circleci-node-issue/tree/master.svg?style=svg)](https://circleci.com/gh/korya/circleci-node-issue/tree/master)
+
 ## Reproduction
 
 ### Good old image
