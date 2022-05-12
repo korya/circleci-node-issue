@@ -1,0 +1,49 @@
+version: 2.1
+
+jobs:
+  good-image:
+    working_directory: /home/circleci/workdir/project/
+    docker:
+      - image: cimg/node@sha256:c8ea4df07599f2c676c81f6dfecb22237da28428997589b28e8afa0afee8e96f
+    steps:
+      - run:
+          name: Node version
+          command: |
+            node -v; npm -v; npx -v; echo $NODE_ENV
+      - checkout
+      - run: npm install
+      - run: npm run test
+
+  bad-image:
+    working_directory: /home/circleci/workdir/project/
+    docker:
+      - image: cimg/node@sha256:c74edbc4f04bab52e47ca8a77e5a44cfb6241a13a87687262e554a345ac5359d
+    steps:
+      - run:
+          name: Node version
+          command: |
+            node -v; npm -v; npx -v; echo $NODE_ENV
+      - checkout
+      - run: npm install
+      - run: npm run test
+
+  latest-image:
+    working_directory: /home/circleci/workdir/project/
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - run:
+          name: Node version
+          command: |
+            node -v; npm -v; npx -v; echo $NODE_ENV
+      - checkout
+      - run: npm install
+      - run: npm run test
+
+workflows:
+  version: 2
+  run-tests:
+    jobs:
+      - good-image
+      - bad-image
+      - latest-image
